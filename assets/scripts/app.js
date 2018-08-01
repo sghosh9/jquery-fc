@@ -141,7 +141,7 @@ Array.from(document.querySelectorAll(".side-nav .nav-item")).forEach(
         event.currentTarget.classList.add("selected");
 
         // Change the sample iframe src
-        document.getElementById("chart-container").src = "./samples/" + tabID;
+        document.getElementById("chart-container").src = window.location.href + "/samples/" + tabID;
 
         // Change the code snippet js/html/data
         jsonCode.setValue(sampleConfig[tabID][activeBtnID]);
