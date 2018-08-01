@@ -125,6 +125,7 @@ window.onclick = function(event) {
 // Samples
 // Change the code snippet to default
 jsonCode.setValue(sampleConfig["simple-chart"]["code"]);
+document.getElementById("chart-container").src = window.location.href + "samples/simple-chart/";
 
 Array.from(document.querySelectorAll(".side-nav .nav-item")).forEach(
   item => {
@@ -141,7 +142,7 @@ Array.from(document.querySelectorAll(".side-nav .nav-item")).forEach(
         event.currentTarget.classList.add("selected");
 
         // Change the sample iframe src
-        document.getElementById("chart-container").src = window.location.href + "/samples/" + tabID;
+        document.getElementById("chart-container").src = window.location.href + "/samples/" + tabID + "/";
 
         // Change the code snippet js/html/data
         jsonCode.setValue(sampleConfig[tabID][activeBtnID]);
