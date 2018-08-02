@@ -126,6 +126,12 @@ jsonCode.setValue(sampleConfig["simple-chart"]["code"]);
 document.getElementById("chart-container").src = window.location.href + "samples/simple-chart/";
 document.getElementById("chart-container").classList.add("simple-chart");
 
+var tabMode = {
+  "code": "javascript",
+  "html": "xml",
+  "data": "javascript"
+};
+
 Array.from(document.querySelectorAll(".side-nav .nav-item")).forEach(
   item => {
     item.onclick = function(event) {
@@ -147,6 +153,11 @@ Array.from(document.querySelectorAll(".side-nav .nav-item")).forEach(
 
         // Change the code snippet js/html/data
         jsonCode.setValue(sampleConfig[tabID][activeBtnID]);
+        if (tabID === "fetch-data-from-xml-url" && activeBtnID === "data") {
+          jsonCode.setOption("mode", "xml");
+        } else {
+          jsonCode.setOption("mode", tabMode[activeBtnID]);
+        }
       }
     }
   }
@@ -167,6 +178,11 @@ Array.from(document.querySelectorAll(".code-nav-btns button")).forEach(
 
         // Change the code snippet js/html/data
         jsonCode.setValue(sampleConfig[activeTabID][btnID]);
+        if (activeTabID === "fetch-data-from-xml-url" && btnID === "data") {
+          jsonCode.setOption("mode", "xml");
+        } else {
+          jsonCode.setOption("mode", tabMode[btnID]);
+        }
       }
     }
   }
