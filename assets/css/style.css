@@ -327,6 +327,11 @@ body {
 
 iframe {
   border: none;
+  display: block;
   width: 100%;
-  height: 480px;
+  height: 450px;
+}
+
+iframe.export-charts {
+  height: 950px;
 }

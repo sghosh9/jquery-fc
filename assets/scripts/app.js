@@ -44,8 +44,6 @@ var jsonCode = CodeMirror(document.getElementById("chartCode"), {
     mode: "javascript"
 });
 
-jsonCode.setValue(JSON.stringify(chartJSON, null, 2));
-
 var step1command1 = CodeMirror(document.getElementById("c1"), {
     tabSize: "4",
     smartIndent: true,
@@ -126,6 +124,7 @@ window.onclick = function(event) {
 // Change the code snippet to default
 jsonCode.setValue(sampleConfig["simple-chart"]["code"]);
 document.getElementById("chart-container").src = window.location.href + "samples/simple-chart/";
+document.getElementById("chart-container").classList.add("simple-chart");
 
 Array.from(document.querySelectorAll(".side-nav .nav-item")).forEach(
   item => {
@@ -143,6 +142,8 @@ Array.from(document.querySelectorAll(".side-nav .nav-item")).forEach(
 
         // Change the sample iframe src
         document.getElementById("chart-container").src = window.location.href + "/samples/" + tabID + "/";
+        document.getElementById("chart-container").className = '';
+        document.getElementById("chart-container").classList.add(tabID);
 
         // Change the code snippet js/html/data
         jsonCode.setValue(sampleConfig[tabID][activeBtnID]);
