@@ -50,11 +50,11 @@ var step1command1 = CodeMirror(document.getElementById("c1"), {
     lineNumbers: true,
     readOnly: true,
     theme: "dracula",
-    mode: "javascript",
+    mode: "xml",
     viewportMargin: Infinity
 });
 
-step1command1.setValue("$ npm install react-fusioncharts --save");
+step1command1.setValue("<script type=\"text/javascript\" src=\"path/to/local/jquery.min.js\"></script>");
 
 var step1command2 = CodeMirror(document.getElementById("c2"), {
     tabSize: "4",
@@ -62,11 +62,11 @@ var step1command2 = CodeMirror(document.getElementById("c2"), {
     lineNumbers: true,
     readOnly: true,
     theme: "dracula",
-    mode: "javascript",
+    mode: "xml",
     viewportMargin: Infinity
 });
 
-step1command2.setValue("$ npm install fusioncharts --save");
+step1command2.setValue("<script type=\"text/javascript\" src=\"path/to/local/fusioncharts.js\"></script>");
 
 var step2command1 = CodeMirror(document.getElementById("c3"), {
     tabSize: "4",
@@ -74,12 +74,11 @@ var step2command1 = CodeMirror(document.getElementById("c3"), {
     lineNumbers: true,
     readOnly: true,
     theme: "dracula",
-    mode: "javascript",
+    mode: "xml",
     viewportMargin: Infinity
 });
 
-step2command1.setValue("code goes here");
-
+step2command1.setValue("<script type=\"text/javascript\" src=\"path/to/local/fusioncharts.jqueryplugin.js\"></script>");
 
 var step2command2 = CodeMirror(document.getElementById("c4"), {
     tabSize: "4",
@@ -91,9 +90,9 @@ var step2command2 = CodeMirror(document.getElementById("c4"), {
     viewportMargin: Infinity
 });
 
-step2command2.setValue("code goes here");
+step2command2.setValue("<script type=\"text/javascript\" src=\"path/to/local/fusioncharts.theme.fusion.js\"></script>");
 
-var step2command3 = CodeMirror(document.getElementById("c5"), {
+var step3command1 = CodeMirror(document.getElementById("c5"), {
     tabSize: "4",
     smartIndent: true,
     lineNumbers: true,
@@ -101,9 +100,30 @@ var step2command3 = CodeMirror(document.getElementById("c5"), {
     theme: "dracula",
     mode: "javascript"
 });
+var c5Code = "$('#chart-container').insertFusionCharts({\n  type: 'hlineargauge',\n  width: '400',\n  height: '150',\n  dataFormat: 'json',\n  dataSource: {\n    \"chart\": {\n      ...\n    },\n    \"colorRange\": {\n      \"color\": [\n        ...\n      ]\n    },\n    \"pointers\": {\n      \"pointer\": [\n        ...\n      ]\n    }\n  }\n});";
+step3command1.setValue(c5Code);
 
-//step2command3.setValue("code goes here");
-step2command3.setValue(JSON.stringify(chartJSON, null, 2));
+var step3command2 = CodeMirror(document.getElementById("c6"), {
+    tabSize: "4",
+    smartIndent: true,
+    lineNumbers: true,
+    readOnly: true,
+    theme: "dracula",
+    mode: "javascript"
+});
+var c6Code = "$('#chart-container').insertFusionCharts({\n  type: 'pie2d',\n  width: '450',\n  height: '300',\n  dataFormat: 'json',\n  dataSource: {\n    \"chart\": {\n    ...\n  },\n  \"data\": [...]\n  }\n});\n\n$('#btnClone').click(function() {\n  // Clone the chart to create a column chart representation of the same data\n  $('#chart-container').cloneFusionCharts(function() {\n    // Append the cloned chart to the same chart container\n    $('#chart-container').appendFusionCharts(this[0]);\n  }, {\n    'id': 'chart-clone',\n    'type': 'column2d'\n  });\n});";
+step3command2.setValue(c6Code);
+
+var step3command3 = CodeMirror(document.getElementById("c7"), {
+    tabSize: "4",
+    smartIndent: true,
+    lineNumbers: true,
+    readOnly: true,
+    theme: "dracula",
+    mode: "javascript"
+});
+var c7Code = "$('#chart-container').insertFusionCharts({\n  type: 'pie2d',\n  width: '450',\n  height: '300',\n  dataFormat: 'json',\n  dataSource: {\n    \"chart\": {\n        ...\n    },\n    \"data\": [\n      ...\n    ]\n  }\n});\n\n$('#btnClone').click(function() {\n  // Clone the chart to create a column chart representation of the same data\n  $('#chart-container').cloneFusionCharts(function() {\n    // Prepend the cloned chart to the same chart container\n    $('#chart-container').prependFusionCharts(this[0]);\n  }, {\n    'id': 'chart-clone',\n    'type': 'column2d'\n  });\n});";
+step3command3.setValue(c7Code);
 
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("mobileChart-selector");
