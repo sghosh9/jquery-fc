@@ -22,6 +22,7 @@
     <center>
       <button class='btn btn-custom' id="change-background">Change Background</button>
       <button class='btn btn-custom' id="change-caption-alignment">Change Caption Alignment</button>
+      <button class="btn btn-red" id="reset-chart">Reset</button>
     </center>
 
     <!-- jQuery -->
@@ -79,6 +80,7 @@
                 }
             ]
         };
+        var dataSourceOrg = JSON.parse(JSON.stringify(dataSource));
         $("#chart-container").insertFusionCharts({
             type: "column2d",
             width: "100%",
@@ -92,6 +94,7 @@
 
         var btnBG = document.getElementById('change-background');
         var btnCA = document.getElementById('change-caption-alignment');
+        var btnReset = document.getElementById('reset-chart');
 
         btnBG.addEventListener('click', function() {
           var dataArrayNew = $.extend({}, dataSource);
@@ -105,6 +108,15 @@
         btnCA.addEventListener('click', function() {
           var dataArrayNew = $.extend({}, dataSource);
           dataArrayNew.chart.captionAlignment = 'left';
+          $('#chart-container').updateFusionCharts({
+              dataFormat: 'json',
+              dataSource: dataArrayNew
+          });
+        });
+
+        btnReset.addEventListener('click', function() {
+          var dataArrayNew = JSON.parse(JSON.stringify(dataSourceOrg));
+          dataSource = JSON.parse(JSON.stringify(dataSourceOrg));
           $('#chart-container').updateFusionCharts({
               dataFormat: 'json',
               dataSource: dataArrayNew
